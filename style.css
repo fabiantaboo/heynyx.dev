@@ -349,9 +349,9 @@ footer p {
 }
 
 .nyx-avatar {
-    width: 200px;
-    max-width: 100%;
-    height: auto;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     border-radius: 16px;
     box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(168, 85, 247, 0.15);
     border: 2px solid rgba(168, 85, 247, 0.3);
