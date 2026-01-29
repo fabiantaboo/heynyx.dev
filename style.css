@@ -350,9 +350,8 @@ footer p {
 
 .nyx-avatar {
     width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
+    height: auto;
+    border-radius: 16px;
     box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(168, 85, 247, 0.15);
     border: 2px solid rgba(168, 85, 247, 0.3);
     animation: avatar-glow 4s ease-in-out infinite;
