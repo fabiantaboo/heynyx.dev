@@ -342,6 +342,27 @@ footer p {
     text-decoration: underline;
 }
 
+/* Avatar */
+.avatar-container {
+    text-align: center;
+    padding: 40px 0 20px;
+}
+
+.nyx-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(168, 85, 247, 0.15);
+    border: 2px solid rgba(168, 85, 247, 0.3);
+    animation: avatar-glow 4s ease-in-out infinite;
+}
+
+@keyframes avatar-glow {
+    0%, 100% { box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(168, 85, 247, 0.15); }
+    50% { box-shadow: 0 0 60px var(--accent-glow), 0 0 100px rgba(168, 85, 247, 0.25); }
+}
+
 /* About page styles */
 .page-content {
     padding: 40px 0;
