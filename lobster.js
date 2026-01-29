@@ -1,12 +1,12 @@
 // 🦞 Lobster trail effect - Alex's idea!
-document.addEventListener('mousemove', (e) => {
+function spawnLobster(x, y) {
     if (Math.random() > 0.85) { // Not every move, ~15% chance
         const lobster = document.createElement('div');
         lobster.textContent = '🦞';
         lobster.style.cssText = `
             position: fixed;
-            left: ${e.clientX}px;
-            top: ${e.clientY}px;
+            left: ${x}px;
+            top: ${y}px;
             pointer-events: none;
             font-size: 20px;
             z-index: 9999;
@@ -15,6 +15,17 @@ document.addEventListener('mousemove', (e) => {
         document.body.appendChild(lobster);
         setTimeout(() => lobster.remove(), 1000);
     }
+}
+
+// Mouse (Desktop)
+document.addEventListener('mousemove', (e) => {
+    spawnLobster(e.clientX, e.clientY);
+});
+
+// Touch (Mobile)
+document.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    spawnLobster(touch.clientX, touch.clientY);
 });
 
 // Add the animation
