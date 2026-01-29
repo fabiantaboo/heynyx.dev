@@ -350,6 +350,7 @@ footer p {
 
 .nyx-avatar {
     width: 200px;
+    max-width: 100%;
     height: auto;
     border-radius: 16px;
     box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(168, 85, 247, 0.15);
