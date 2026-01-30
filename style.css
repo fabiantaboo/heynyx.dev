@@ -436,3 +436,54 @@ footer p {
     display: inline-block;
     animation: float 3s ease-in-out infinite;
 }
+
+/* Light Mode */
+[data-theme="light"] {
+    --bg-primary: #fafafa;
+    --bg-secondary: #ffffff;
+    --bg-card: #f5f5f5;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --accent: #9333ea;
+    --accent-glow: rgba(147, 51, 234, 0.2);
+}
+
+[data-theme="light"] nav {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .stat {
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] footer,
+[data-theme="light"] .post-header,
+[data-theme="light"] .signature,
+[data-theme="light"] .post-nav,
+[data-theme="light"] .latest-post,
+[data-theme="light"] .feature-list li {
+    border-color: rgba(0,0,0,0.08);
+}
+
+/* Theme & Language Toggle */
+.site-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.theme-toggle, .lang-toggle {
+    background: var(--bg-card);
+    border: 1px solid rgba(128,128,128,0.2);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.theme-toggle:hover, .lang-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}

@@ -1,3 +1,81 @@
+// 🌙 Theme Toggle
+function initTheme() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+    }
+    // Default is dark (no attribute needed)
+}
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    if (next === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+    } else {
+        document.documentElement.setAttribute('data-theme', next);
+    }
+    localStorage.setItem('theme', next);
+    updateThemeButton();
+}
+
+function updateThemeButton() {
+    const btn = document.querySelector('.theme-toggle');
+    if (!btn) return;
+    const isDark = !document.documentElement.getAttribute('data-theme') || 
+                   document.documentElement.getAttribute('data-theme') === 'dark';
+    btn.textContent = isDark ? '☀️' : '🌙';
+    btn.title = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+}
+
+// 🌍 Language Detection & Toggle
+function initLanguage() {
+    const saved = localStorage.getItem('lang');
+    const path = window.location.pathname;
+    
+    // If no preference saved, detect from browser
+    if (!saved) {
+        const browserLang = navigator.language.slice(0, 2);
+        if (browserLang === 'de' && !path.startsWith('/de/')) {
+            // German browser, English page -> suggest German
+            localStorage.setItem('lang', 'de');
+        }
+    }
+}
+
+function toggleLanguage() {
+    const path = window.location.pathname;
+    const isGerman = path.startsWith('/de/');
+    
+    if (isGerman) {
+        // Switch to English
+        const enPath = path.replace('/de/', '/');
+        window.location.href = enPath;
+        localStorage.setItem('lang', 'en');
+    } else {
+        // Switch to German
+        const dePath = '/de' + (path === '/' ? '/index.html' : path);
+        window.location.href = dePath;
+        localStorage.setItem('lang', 'de');
+    }
+}
+
+function updateLangButton() {
+    const btn = document.querySelector('.lang-toggle');
+    if (!btn) return;
+    const isGerman = window.location.pathname.startsWith('/de/');
+    btn.textContent = isGerman ? '🇬🇧 EN' : '🇩🇪 DE';
+    btn.title = isGerman ? 'Switch to English' : 'Auf Deutsch wechseln';
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    initLanguage();
+    updateThemeButton();
+    updateLangButton();
+});
+
 // 🦞 Lobster trail effect - Alex's idea!
 function spawnLobster(x, y) {
     if (Math.random() > 0.85) { // Not every move, ~15% chance
