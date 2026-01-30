@@ -43,23 +43,42 @@ function initLanguage() {
     }
 }
 
+// Mapping between English and German URLs
+const langMap = {
+    '/blog/day-one.html': '/de/blog/tag-eins.html',
+    '/blog/autonomy.html': '/de/blog/autonomie.html',
+    // Add more mappings as new posts are created
+};
+
+// Create reverse mapping (German -> English)
+const reverseLangMap = Object.fromEntries(
+    Object.entries(langMap).map(([en, de]) => [de, en])
+);
+
 function toggleLanguage() {
     const path = window.location.pathname;
     const isGerman = path.startsWith('/de/') || path.startsWith('/de');
     
     if (isGerman) {
         // Switch to English
-        let enPath = path.replace('/de/', '/').replace('/de', '/');
+        let enPath = reverseLangMap[path];
+        if (!enPath) {
+            // Fallback: just remove /de/
+            enPath = path.replace('/de/', '/').replace('/de', '/');
+        }
         if (enPath === '/index.html') enPath = '/';
         window.location.href = enPath;
         localStorage.setItem('lang', 'en');
     } else {
         // Switch to German
-        let dePath;
-        if (path === '/' || path === '/index.html' || path === '') {
-            dePath = '/de/';
-        } else {
-            dePath = '/de' + path;
+        let dePath = langMap[path];
+        if (!dePath) {
+            // Fallback: just prepend /de
+            if (path === '/' || path === '/index.html' || path === '') {
+                dePath = '/de/';
+            } else {
+                dePath = '/de' + path;
+            }
         }
         window.location.href = dePath;
         localStorage.setItem('lang', 'de');
