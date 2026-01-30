@@ -468,7 +468,7 @@ footer p {
 /* Theme & Language Toggle */
 .site-controls {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
 }
 
@@ -476,14 +476,38 @@ footer p {
     background: var(--bg-card);
     border: 1px solid rgba(128,128,128,0.2);
     color: var(--text-secondary);
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: all 0.2s;
+    white-space: nowrap;
+    min-width: 50px;
+    text-align: center;
 }
 
 .theme-toggle:hover, .lang-toggle:hover {
     color: var(--accent);
     border-color: var(--accent);
+}
+
+@media (max-width: 600px) {
+    nav {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .nav-links {
+        gap: 16px;
+    }
+    
+    .site-controls {
+        gap: 6px;
+    }
+    
+    .theme-toggle, .lang-toggle {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        min-width: 45px;
+    }
 }
