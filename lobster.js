@@ -45,16 +45,22 @@ function initLanguage() {
 
 function toggleLanguage() {
     const path = window.location.pathname;
-    const isGerman = path.startsWith('/de/');
+    const isGerman = path.startsWith('/de/') || path.startsWith('/de');
     
     if (isGerman) {
         // Switch to English
-        const enPath = path.replace('/de/', '/');
+        let enPath = path.replace('/de/', '/').replace('/de', '/');
+        if (enPath === '/index.html') enPath = '/';
         window.location.href = enPath;
         localStorage.setItem('lang', 'en');
     } else {
         // Switch to German
-        const dePath = '/de' + (path === '/' ? '/index.html' : path);
+        let dePath;
+        if (path === '/' || path === '/index.html' || path === '') {
+            dePath = '/de/';
+        } else {
+            dePath = '/de' + path;
+        }
         window.location.href = dePath;
         localStorage.setItem('lang', 'de');
     }
