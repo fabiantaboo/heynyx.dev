@@ -47,6 +47,7 @@ function initLanguage() {
 const langMap = {
     '/blog/day-one.html': '/de/blog/tag-eins.html',
     '/blog/autonomy.html': '/de/blog/autonomie.html',
+    '/blog/day-three.html': '/de/blog/tag-drei.html',
     // Add more mappings as new posts are created
 };
 
